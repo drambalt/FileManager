@@ -48,9 +48,19 @@ public class FileManager {
                     break;
                 case "copy":
                     if(components.length!=4){
-
+                        answer = "Error, enter command one more time";
                     }
+                    else{
+                        String fileName = components[1];
+                        String copy = components[2];
+                        String paste = components[3];
+                        answer = fileOperations.copyFile(fileName, copy, paste);
+                    }
+                    break;
+                default:
+                    answer = "Error, enter command one more time";
             }
+            System.out.println(answer);
         }
     }
 }
