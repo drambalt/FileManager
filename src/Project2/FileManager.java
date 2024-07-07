@@ -1,10 +1,14 @@
-package Project;
+package Project2;
+import Project.FileOperations;
+import Project.FileOperations1;
+
 import java.util.Scanner;
 public class FileManager {
     public static void main(String[] args) {
         FileOperations fileOperations = new FileOperations1();
         Scanner in = new Scanner(System.in);
-        while(true){
+        boolean ongo = true;
+        while(ongo){
             System.out.println("Enter command:");
             String cmnd = in.nextLine();
             String[] components = cmnd.split(" ");
@@ -21,7 +25,8 @@ public class FileManager {
                     else{
                         String fileName = components[1];
                         String directoryPath = components[2];
-                        answer = fileOperations.createFile(fileName, directoryPath);
+                        new Create().doSmth(fileName, directoryPath);
+                        answer = "Done, file " + fileName + " is created.";
                     }
                     break;
                 case "delete":
@@ -31,7 +36,8 @@ public class FileManager {
                     else{
                         String fileName = components[1];
                         String directoryPath = components[2];
-                        answer = fileOperations.deleteFile(fileName, directoryPath);
+                        new Delete().doSmth(fileName, directoryPath);
+                        answer = "Done, file " + fileName + " is deleted.";
 
                     }
                     break;
@@ -43,10 +49,11 @@ public class FileManager {
                         String directoryPath = components[1];
                         String oldName = components[2];
                         String newName = components[3];
-                        answer = fileOperations.renameFile(directoryPath, oldName, newName);
+                        new Rename().doSmth(directoryPath, oldName, newName);
+                        answer = "Done, file " + oldName + " is renamed. New name is " + newName;
                     }
                     break;
-                case "copy":
+                case "Copy":
                     if(components.length!=4){
                         answer = "Error, enter command one more time";
                     }
@@ -54,13 +61,12 @@ public class FileManager {
                         String fileName = components[1];
                         String copy = components[2];
                         String paste = components[3];
-                        answer = "Done, file " + fileName + " is copied.";
+                        new Copy().doSmth(fileName, copy, paste);
+                        answer = fileOperations.copyFile(fileName, copy, paste);
                     }
                     break;
-                default:
-                    answer = "Error, enter command one more time";
+
             }
-            System.out.println(answer);
         }
     }
 }
