@@ -62,11 +62,14 @@ public class FileManager {
                         String copy = components[2];
                         String paste = components[3];
                         new Copy().doSmth(fileName, copy, paste);
-                        answer = fileOperations.copyFile(fileName, copy, paste);
+                        answer = "Done, file "+ fileName + " is copied.";
                     }
                     break;
+                default:
+                    answer = "Error, enter command one more time";
 
             }
+            System.out.println(answer);
         }
     }
 }
